@@ -1,1 +1,6 @@
-# Cypresstesting
+Basic Website Automation Testing
+
+CssLocators
+Assertions
+Radion Buttons
+CheckBox
