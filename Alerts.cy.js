@@ -36,7 +36,7 @@ describe ("Alerts",()=>{
 
     })
 
-    it.only('Js Confirm Alerts - Cancel', () => {
+    it('Js Confirm Alerts - Cancel', () => {
 
 
         cy.visit('https://the-internet.herokuapp.com/javascript_alerts')
@@ -52,5 +52,45 @@ describe ("Alerts",()=>{
     cy.get('#result').should('have.text','You clicked: Cancel')
 
     })
+
+     //3 Javascript Prompt Alert:
+
+     it('Js Prompt Alerts', () => {
+
+
+        cy.visit('https://the-internet.herokuapp.com/javascript_alerts')
+
+        cy.window().then((win)=>{
+           // cy.stub(win,'prompt').returns('welcome');
+          //  cy.stub(win, 'prompt').returns('null')
+          cy.stub(win, 'prompt').callsFake(() => null)
+
+        })
+        cy.get("button[onclick='jsPrompt()']").click();
+
+        //cypress automatically closed prompth alert -it will use ok ok button-default
+       
+       // cy.get('#result').should("have.text","You entered: welcome")
+
+        cy.on('window:prompt',()=>false); 
+
+        cy.get('#result').should('have.text','You entered: null');
+
+    })
+    // Authenticated Alert
     
+    it.only('Authenticated Alert', () => {
+
+        //approach 1
+     /*   cy.visit("https://the-internet.herokuapp.com/basic_auth",{ auth:
+             { username:"admin", 
+                password: "admin"} });
+
+       cy.get("div[class='example'] p").should('have.contain',"Congratulations")
+        */
+       cy.visit("https://admin:admin@the-internet.herokuapp.com/basic_auth")
+
+       cy.get("div[class='example'] p").should('have.contain',"Congratulations")
+    })
+
 })
