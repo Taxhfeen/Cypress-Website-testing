@@ -68,7 +68,7 @@ describe ("Alerts",()=>{
         })
         cy.get("button[onclick='jsPrompt()']").click();
 
-        //cypress automatically closed prompth alert -it will use ok ok button-default
+        //cypress automatically closed prompt alert -it will use ok button-default
        
        // cy.get('#result').should("have.text","You entered: welcome")
 
