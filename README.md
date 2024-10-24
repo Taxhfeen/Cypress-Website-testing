@@ -7,3 +7,4 @@ CheckBox
 Dropdown
 Alerts
 Mouse Operations
+File Upload
